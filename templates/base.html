@@ -1,0 +1,24 @@
+<html>
+<head>
+    <title>My Recipe</title>
+    {% block css %}
+        
+    {% endblock css %}
+    
+    {% block js %}
+        
+    {% endblock js %}
+</head>
+<body>
+    <span><a href="{% url recipe:index %}">Home</a></span> | 
+    <span><a href="{% url recipe:create_recipe %}">Create Recipe</a></span><br/><br/>
+    
+    {% if messages %}
+        {% for message in messages %}
+        <p style="color:red">{{message}}</p>
+        {% endfor %}
+    {% endif %}
+    
+    {% block content %}{% endblock content %}
+</body>
+</html>

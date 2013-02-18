@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3><u>{{recipe.title}} Recipe</u></h3>
+<h3>Add New Preparation</h3>
+<form method="post">
+    {% csrf_token %}
+    <div style="display:none">{{form.recipe}}</div>
+    <p>Preparation step: {{form.step}}</p>
+    <input type="submit" value="Save Step"> 
+</form><br/>
+
+<h3>List of Preparation Steps</h3>
+{% if steps %}
+    <ul>
+    {% for step in steps %}
+        <li>{{step.step}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No steps are available.</p>
+{% endif %}
+{% endblock content  %}

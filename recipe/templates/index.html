@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if recipes %}
+    <ul>
+    {% for recipe in recipes %}
+        <li><a href="{% url recipe:view_recipe recipe.id %}">{{recipe.title}}</a>
+            <br/>Created by: {{recipe.fname}} {{recipe.lname}}
+            <br/>{{recipe.created.date}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No recipies are available.</p>
+{% endif %}
+{% endblock content  %}

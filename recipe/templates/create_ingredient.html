@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3><u>{{recipe.title}} Recipe</u></h3>
+<h3>Add New Ingredients</h3>
+<form method="post">
+    {% csrf_token %}
+    <div style="display:none">{{form.recipe}}</div>
+    <p>Ingredient: {{form.name}}</p>
+    <input type="submit" value="Save Ingredient"> 
+    {% if ingredients %}
+    <a href="{% url recipe:create_steps recipe.id %}">I want to create the step by step preparation</a>
+    {% endif %}
+</form><br/>
+
+<h3>List of Ingredients</h3>
+{% if ingredients %}
+    <ul>
+    {% for ingredient in ingredients %}
+        <li>{{ingredient.name}}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No ingredients are available.</p>
+{% endif %}
+{% endblock content  %}

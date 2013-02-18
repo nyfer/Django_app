@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h3>{{recipe.title}} Recipe</h3>
+
+<h3>Ingredients</h3>
+<a href="{% url recipe:create_ingredients recipe.id %}">Add ingredients</a><br/>
+{% if ingredients %}
+    {% for ingredient in ingredients %}
+        <p>- {{ingredient.name}}</p>
+    {% endfor %}
+{% else %}
+    <p>No ingredients are available.</p>
+{% endif %}
+
+<br>
+<!-- prepartion_step -->
+<h3>Preparation</h3>
+<a href="{% url recipe:create_steps recipe.id %}">Add preparation steps</a><br/>
+{% if steps %}
+    {% for step in steps %}
+        <p>{{forloop.counter}}. {{step.step}}</p>
+    {% endfor %}
+{% else %}
+    <p>No steps are available.</p>
+{% endif %}
+{% endblock content %}
